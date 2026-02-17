@@ -1,0 +1,448 @@
+* {
+    font-family: "Poppins", sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    background: transparent !important;
+    backdrop-filter: none;
+    border-bottom: none;
+
+    /* Remove shadows */
+    box-shadow: none !important;
+
+    z-index: 999;
+}
+
+
+.logo { font-size: 28px; font-weight: 700; color: #111; }
+.nav-links { list-style: none; display: flex; gap: 30px; }
+.nav-links a { text-decoration: none; font-size: 18px; color: #333; }
+
+@media (max-width: 768px) {
+    .navbar { flex-direction: column; padding: 15px 20px; text-align: center; }
+    .logo { font-size: 24px; margin-bottom: 10px; }
+    .nav-links { flex-direction: column; gap: 10px; }
+    .nav-links a { font-size: 16px; }
+}
+.navbar {
+  opacity: 0;                 
+  transform: translateY(-20px); 
+  transition: opacity 0.8s ease, transform 0.8s ease;
+  position: fixed;            
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 50px;
+  background-color: rgba(255, 255, 255, 0.95); /* semi-transparent white */
+
+  box-shadow: none !important;  /* force remove any shadow */
+  border: none !important;       /* remove all borders */
+  outline: none;                 /* remove any focus outlines */
+}
+.navbar {
+  cursor: default !important;   /* show normal arrow cursor */
+  pointer-events: auto;         /* allow normal pointer interaction */
+}
+
+
+.navbar.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Custom Cursor */
+body {
+  cursor: none;
+}
+
+.cursor {
+  width: 42px;
+  height: 42px;
+  border: 2px solid #000;
+  border-radius: 50%;
+  position: fixed;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  z-index: 10000;
+  background: #000;
+  transition: width 0.2s ease, height 0.2s ease, border-color 0.2s ease, background 0.2s ease, opacity 0.2s ease;
+  display: block !important;
+  opacity: 1;
+  animation: cursorGrow 2s ease-out forwards;
+}
+
+@keyframes cursorGrow {
+  0% {
+    width: 3px;
+    height: 3px;
+    opacity: 0.5;
+  }
+  100% {
+    width: 42px;
+    height: 42px;
+    opacity: 1;
+  }
+}
+
+.cursor.hidden {
+  opacity: 0 !important;
+  pointer-events: none;
+  visibility: hidden !important;
+}
+
+/* Underline animation for links and buttons */
+a, button {
+  position: relative;
+  text-decoration: none;
+}
+
+a::after, button::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: #000;
+  transition: width 0.3s ease;
+}
+
+a:hover::after, button:hover::after {
+  width: 100%;
+}
+
+/* Cursor Trail */
+.cursor-trail {
+  width: 10px;
+  height: 10px;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  border-radius: 50%;
+  position: fixed;
+  pointer-events: none;
+  z-index: 9999;
+  background: rgba(0, 0, 0, 0.1);
+  animation: fadeOut 0.5s ease-out forwards;
+}
+
+@keyframes fadeOut {
+  to {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.5);
+  }
+}
+
+/* Body & Section */
+/* Body & Section */
+/* Body & Section */
+.flow-container {
+  width: 100%;
+  position: relative;
+  padding-top: 120px;  /* pushes EVERYTHING down from top bar */
+}
+
+.iam-wrapper {
+  margin-bottom: 50px;  /* space between rotating text & the 4 lines */
+  text-align: center;
+
+  font-family: "Anton", sans-serif;
+  font-size: 48px;
+  font-weight: 700;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 60px;
+  gap: 6px;
+}
+.iam-wrapper {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 1s ease, transform 1s ease;
+}
+
+.iam-wrapper.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.iam-wrapper {
+  margin-bottom: 50px;
+  text-align: center;
+
+  font-family: "Anton", sans-serif; /* Or your chosen tall font */
+  font-size: 48px;
+  font-weight: 700;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 60px;
+}
+
+.iam-rotate {
+  display: inline-block;
+  height: 60px;
+  overflow: hidden;
+}
+
+.iam-rotate span {
+  display: block;
+  height: 60px;
+  line-height: 60px;
+  animation: rotateWords 9s infinite ease-in-out;
+}
+
+@keyframes rotateWords {
+  0%   { transform: translateY(0); }
+  33%  { transform: translateY(-60px); }
+  66%  { transform: translateY(-120px); }
+  100% { transform: translateY(0); }
+}
+
+.iam-rotate span {
+  position: relative;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.iam-rotate span::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 3px;
+  width: 0%;
+  background: #000;
+  transition: width 0.3s ease;
+}
+
+.iam-rotate:hover span {
+  transform: scale(1.05);
+}
+
+.iam-rotate:hover span::after {
+  width: 100%;
+}
+
+body {
+  cursor: none;
+  margin: 0;
+  font-family: 'Gloock', serif;
+  overflow-x: hidden;
+  background: #f8f8f8;
+}
+
+.text-section {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+  padding: 0;
+}
+.marquee-container {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.marquee-container.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+.marquee-container {
+  width: 100%;
+  overflow: hidden;
+}
+
+.marquee-row {
+  display: flex;
+  overflow: hidden;
+  margin: 0;
+  line-height: 1;
+}
+
+.marquee-inner {
+  display: flex;
+  white-space: nowrap;
+}
+
+.marquee-inner span {
+  margin: 0 1rem;
+  font-size: 6vw;
+  font-weight: 700;
+  color: #111;
+  text-transform: uppercase;
+}
+
+/* Animation speeds */
+.row-1 .marquee-inner { animation: scroll-left 35s linear infinite; }
+.row-2 .marquee-inner { animation: scroll-right 28s linear infinite; }
+.row-3 .marquee-inner { animation: scroll-left 22s linear infinite; }
+.row-4 .marquee-inner { animation: scroll-right 16s linear infinite; }
+
+/* Keyframes */
+@keyframes scroll-left {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); } /* half width because we duplicated content */
+}
+
+@keyframes scroll-right {
+  0% { transform: translateX(-50%); }
+  100% { transform: translateX(0); }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .marquee-inner span { font-size: 10vw; }
+}
+/* Hover effects for marquee lines */
+.marquee-inner span:hover {
+  transform: scale(1.2);      /* slightly bigger */
+  color: #ff5722;             /* highlight color */
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+/* Pause the scroll on hover of the line */
+.marquee-row:hover .marquee-inner {
+  animation-play-state: paused;
+}
+
+/* Full-screen Hero Carousel */
+.hero-carousel {
+    width: 100%;
+    height: 100vh; /* full viewport height */
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.carousel-slide {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-size: cover;
+    background-position: center;
+    transition: opacity 1s ease-in-out;
+    opacity: 0;
+}
+
+.carousel-slide.active { opacity: 1; }
+
+/* Description Section */
+.description {
+    max-width: 900px;
+    margin: 100px auto; /* 100px below the carousel */
+    padding: 0 20px;
+    text-align: center;
+}
+
+.description p {
+    font-size: 22px;
+    line-height: 1.6;
+    color: #333;
+}
+
+@media (max-width: 768px) {
+    .description p { font-size: 18px; }
+}
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 50px;
+    background: rgba(255,255,255,0.9);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    border-bottom: 1px solid #eee;
+    transition: transform 0.3s ease-in-out; /* smooth hide/show */
+}
+/* Apply topography background to the whole body */
+body {
+    background: #ffffff; /* white */
+    position: relative;
+    z-index: 1;
+}
+
+/* EXCLUDE HERO + DESCRIPTION sections */
+.hero-carousel,
+.description {
+    position: relative;
+    z-index: 10;  
+    background: none !important;
+}
+
+/* Deep orange dynamic looping topography */
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    opacity: 0.35;
+
+    background: repeating-radial-gradient(
+        circle,
+        rgba(255, 87, 34, 0.4) 0px,     /* #ff5722 */
+        rgba(255, 87, 34, 0.4) 2px,
+        transparent 3px,
+        transparent 25px
+    );
+
+    animation: topoMove 18s linear infinite;
+    background-size: 300% 300%;
+}
+
+/* Smooth animated movement */
+@keyframes topoMove {
+    0%   { background-position: 0% 0%; }
+    50%  { background-position: 100% 100%; }
+    100% { background-position: 0% 0%; }
+}
+.box {
+    width: 100px;
+    height: 100px;
+    color: white;
+    font-size: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 20px;
+    position: relative;
+    z-index: 10;
+}
+
+/* Individual box colors */
+.box.a {
+    background-color: violet;
+}
+
+.box.b {
+    background-color: green;
+}
+
+.box.c {
+    background-color: orange;
+}
+
